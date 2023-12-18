@@ -22,15 +22,20 @@ if (!isset($_SESSION['user_login'])) {
         <?php
         if (isset($_SESSION['user_login'])){
             $user_id = $_SESSION['user_login'];
-            $stmt = $conn->query("select * from users where id = id");
+            $stmt = $conn->query("select * from users where id = $user_id");
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         }
         ?>
         <h3 class = "mt-4">Welcome User , <?php echo $row['firstname']?></h3>
         <a href="logout.php" class ='btn btn-danger'> Logout</a>
-        <a href = "profile.php=<?= $user['id']; ?>">Profile</a>
-        <!-- <a href="edit.php?id=<?= $user['id']; ?>"></a> -->
+        <a href="profile.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Profile</a>
+        
+
+        <!-- <a href = "profile.php=<?= $user['id']; ?>" class="btn btn-primary">Profile</a> -->
+        <!-- <a href = "profile.php" class="btn btn-primary">Profile</a> -->
+        
+
     </div>
     
 </body>

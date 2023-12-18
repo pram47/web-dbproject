@@ -39,7 +39,7 @@ require_once 'config/db.php';
 
     <!-- Link Register -->
     <div class="form" id="signupForm">
-        <h2>Sign up</h2>
+        <h2>Sign in</h2>
         <div class="form-box" >
                 <form action="signin_db.php" method = "post">
                     <?php if(isset($_SESSION['error'])) {?>

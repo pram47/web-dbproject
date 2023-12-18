@@ -75,6 +75,18 @@
         </div>
     </div> -->
     
+
+
+    <?php
+        if (isset($_SESSION['user_login'])){
+            $user_id = $_SESSION['user_login'];
+            $stmt = $conn->query("select * from users where id = $user_id");
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        ?>
+        <!-- <?php echo $row['firstname']?> -->
+
     <img src="image/aqua cry.png" alt="Italian Trulli" class = "profile_img">
     <table class="table">
         <thead>
@@ -89,30 +101,29 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-                $stmt = $conn->query("select * from users");
-                $stmt->execute();
-                $users = $stmt->fetchAll();
-
-                if (!$users) {
-                    echo "<p><td colspan='6' class='text-center'>No data available</td></p>";
-                } else {
-                    foreach($users as $user) {
-
-            ?>
+            
             <tr>
-            <th scope="row"><?= $user['id'];?></th>
+
+            <th scope="row"><?= $row['id'];?></th>
+            <td><?= $row['firstname'];?></td>
+            <td><?= $row['lastname'];?></td>
+            <td><?= $row['username'];?></td>
+            <td><?= $row['email'];?></td>
+            <td><?= $row['date_of_birth'];?></td>
+
+
+            <!-- <th scope="row"><?= $user['id'];?></th>
             <td><?= $user['firstname'];?></td>
             <td><?= $user['lastname'];?></td>
             <td><?= $user['username'];?></td>
             <td><?= $user['email'];?></td>
-            <td><?= $user['date_of_birth'];?></td>
+            <td><?= $user['date_of_birth'];?></td> -->
             <td>
-                <a href="edit.php?id=<?= $user['id']; ?>"></a>
+                <!-- <a href="edit.php?id=<?= $user['id']; ?>"></a> -->
+                <a href="edit.php?id=<?= $user['id']; ?>" class="btn btn-primary">Edit</a>
             </td>
             </tr>
-            <?php } 
-                }?>
+
         </tbody>
     </table>
 
