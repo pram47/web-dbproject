@@ -87,7 +87,7 @@
         ?>
         <!-- <?php echo $row['firstname']?> -->
 
-    <img src="image/aqua cry.png" alt="Italian Trulli" class = "profile_img">
+    <!-- <img src="image/aqua cry.png" alt="Italian Trulli" class = "profile_img"> -->
     <table class="table">
         <thead>
             <tr>
@@ -97,7 +97,7 @@
             <th scope="col">Username</th>
             <th scope="col">Email</th>
             <th scope="col">Date of birth</th>
-            <th scope="col">action</th>
+            <th scope="col">Profile image</th>
             </tr>
         </thead>
         <tbody>
@@ -110,6 +110,8 @@
             <td><?= $row['username'];?></td>
             <td><?= $row['email'];?></td>
             <td><?= $row['date_of_birth'];?></td>
+            <td width="250px"><img class="rounded" width="100%" src="uploads/<?php echo $row['img']; ?>" alt=""></td>
+
 
 
             <!-- <th scope="row"><?= $user['id'];?></th>
@@ -120,7 +122,9 @@
             <td><?= $user['date_of_birth'];?></td> -->
             <td>
                 <!-- <a href="edit.php?id=<?= $user['id']; ?>"></a> -->
-                <a href="edit.php?id=<?= $user['id']; ?>" class="btn btn-primary">Edit</a>
+                <a href="edit.php?id=<?= $row['id']; ?>" class="btn btn-primary">Edit</a>
+                <a href="?delete=<?= $row['id']; ?>" class="btn btn-danger" onclick="return confirm('are you sure you want to delete?')">Delete</a>
+                <!-- <a href="profile.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Profile</a> -->
             </td>
             </tr>
 

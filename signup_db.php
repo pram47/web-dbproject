@@ -9,6 +9,7 @@
         $date_of_birth = $_POST['date_of_birth'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        
 
         if (empty($firstname)) {
             $_SESSION['error'] = 'please enter name';

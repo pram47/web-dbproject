@@ -8,7 +8,7 @@
         $id = $_POST['id'];
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
-        $position = $_POST['position'];
+        $username = $_POST['username'];
         $img = $_FILES['img'];
 
         $img2 = $_POST['img2'];
@@ -31,17 +31,17 @@
             $fileNew = $img2;
         }
 
-        $sql = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, position = :position, img = :img WHERE id = :id");
+        $sql = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, username = :username, img = :img WHERE id = :id");
         $sql->bindParam(":id", $id);
         $sql->bindParam(":firstname", $firstname);
         $sql->bindParam(":lastname", $lastname);
-        $sql->bindParam(":position", $position);
+        $sql->bindParam(":username", $username);
         $sql->bindParam(":img", $fileNew);
         $sql->execute();
 
         if ($sql) {
             $_SESSION['success'] = "Data has been updated successfully";
-            header("location: index.php");
+            header("location: profile.php");
         } else {
             $_SESSION['error'] = "Data has not been updated successfully";
             header("location: index.php");
@@ -78,19 +78,21 @@
                 }
             ?>
                 <div class="mb-3">
-                    <label for="id" class="col-form-label">ID:</label>
+                    
+                    
+                    
                     <input type="text" readonly value="<?php echo $data['id']; ?>" required class="form-control" name="id" >
                     <label for="firstname" class="col-form-label">First Name:</label>
                     <input type="text" value="<?php echo $data['firstname']; ?>" required class="form-control" name="firstname" >
                     <input type="hidden" value="<?php echo $data['img']; ?>" required class="form-control" name="img2" >
                 </div>
                 <div class="mb-3">
-                    <label for="firstname" class="col-form-label">Last Name:</label>
+                    <label for="lastname" class="col-form-label">Last Name:</label>
                     <input type="text" value="<?php echo $data['lastname']; ?>" required class="form-control" name="lastname">
                 </div>
                 <div class="mb-3">
-                    <label for="firstname" class="col-form-label">Position:</label>
-                    <input type="text" value="<?php echo $data['position']; ?>" required class="form-control" name="position">
+                    <label for="username" class="col-form-label">Username:</label>
+                    <input type="text" value="<?php echo $data['username']; ?>" required class="form-control" name="username">
                 </div>
                 <div class="mb-3">
                     <label for="img" class="col-form-label">Image:</label>
@@ -98,7 +100,7 @@
                     <img width="100%" src="uploads/<?php echo $data['img']; ?>" id="previewImg" alt="">
                 </div>
                 <hr>
-                <a href="index.php" class="btn btn-secondary">Go Back</a>
+                <a href="profile.php" class="btn btn-secondary">Go Back</a>
                 <button type="submit" name="update" class="btn btn-primary">Update</button>
             </form>
     </div>
