@@ -1,0 +1,108 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+nav{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    padding: 20px 200px;
+    background: #162938;
+    display:flex;
+    justify-content: space-between;
+    z-index: 99;
+    height: 12%;
+    /* border:2px solid red; */
+}
+
+
+.logo a{
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    font-size: 2em;
+    
+}
+.menu{
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    display: flex;
+    list-style: none;
+    
+
+}
+.menu li{
+    align-self: center  ;
+    margin-left: 20px;
+    /* border:2px solid red; */
+}
+
+.menu a{
+    position: relative;
+    text-decoration: none;
+    color: white;
+}
+.menu a::after{
+    content: '';
+    position:absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s ;
+}
+.menu a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.menu .btnLogin{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+.menu .btnLogin:hover{
+    background: #fff;
+    color: #162938;
+}
+.banner{
+    display: flex;
+    justify-content:center;
+    border: 2px solid red;
+    margin: 10px 300px;
+    list-style:none;
+}
+.banner li{
+    padding-left: 20px;
+}
+
+.profile_img{
+    display: block;
+    margin: -350px auto 0px 50px;
+    /* margin-left: 50px;
+    margin-right: auto; */
+    width: 8%;
+}

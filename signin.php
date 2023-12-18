@@ -10,7 +10,7 @@ require_once 'config/db.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>Signin</title>
     <link rel="stylesheet" href="testlogin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
@@ -41,7 +41,7 @@ require_once 'config/db.php';
     <div class="form" id="signupForm">
         <h2>Sign up</h2>
         <div class="form-box" >
-                <form action="signup_db.php" method = "post">
+                <form action="signin_db.php" method = "post">
                     <?php if(isset($_SESSION['error'])) {?>
                         <div class = "alert alert-danger" role = "alert">
                             <?php
@@ -62,16 +62,6 @@ require_once 'config/db.php';
                         </div>
                     <?php }?>
 
-                    <?php if(isset($_SESSION['warning'])) {?>
-                        <div class = "alert alert-warning" role = "alert">
-                            <?php
-                                $_SESSION['alert_type'] = 'warning';
-                                echo $_SESSION['warning'];
-                                unset($_SESSION['warning']);
-                            ?>
-                        </div>
-                    <?php }?>
-
                     <div class="input-box">
                         <span class="icon"><ion-icon aria-describedby="email"></ion-icon></span>
                         <input type="email"  name="email" required>
@@ -82,38 +72,8 @@ require_once 'config/db.php';
                         <input type="password" name="password" required>
                         <label for="">Password</label>
                     </div>
-                    <div class="input-box">
-                        <span class="icon"><ion-icon  aria-describedby="firstname"></ion-icon></span>
-                        <input type="text" name="firstname" required>
-                        <label for="">First name</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><ion-icon aria-describedby="lastname"></ion-icon></span>
-                        <input type="text" name="lastname" required>
-                        <label for="">Last name</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><ion-icon aria-describedby="username"></ion-icon></span>
-                        <input type="text" name="username" required>
-                        <label for="">Username</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><ion-icon  aria-describedby="date_of_birth"></ion-icon></span>
-                        <input type="date" name="date_of_birth" required>
-                        <label for="">Date of birth</label>
-                    </div>
-                    <div class="gender">
-                        <span class="icon"><ion-icon name="transgender"></ion-icon></span>
-                        <select placeholder="gender" id="gender">
-                            <option value="gender">gender</option>
-                            <option value="gender">male</option>
-                            <option value="gender">female</option>
-                        </select>
-                    </div>
-                    <button type="submit" name="signup" class="btnSignup">Sign up</button>
-                    <!-- <p>already signup? click here to <a href="signin.php" target="_blank">sign in</a></p> -->
-                    <p>already signup? click here to <a href="signin.php">sign in</a></p>
-
+                    <button type="submit" name="signin" class="btnSignin">Sign in</button>
+                    <p>don't have account yet? click here to <a href="log-sig.php">sign up</a></p>
                 </form>
         </div>
         

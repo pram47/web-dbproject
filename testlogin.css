@@ -111,8 +111,58 @@ nav{
     justify-content: center;
     padding: 40px;
     
-    
 }
+
+.form.error {
+    position: relative;
+    width: 440px;
+    height: 550px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0, 0, .5);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    padding: 40px;
+}
+
+.form.success {
+    position: relative;
+    width: 440px;
+    height: 550px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0, 0, .5);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    padding: 40px;
+}
+
+.form.warning {
+    position: relative;
+    width: 440px;
+    height: 550px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0, 0, .5);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    padding: 40px;
+}
+
+
+
 .form h2{
     align-self: center;
     text-align: center;

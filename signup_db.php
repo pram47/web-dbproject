@@ -12,27 +12,35 @@
 
         if (empty($firstname)) {
             $_SESSION['error'] = 'please enter name';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else if (empty($lastname)) {
             $_SESSION['error'] = 'please enter lastname';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else if (empty($username)) {
             $_SESSION['error'] = 'please enter username';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else if (empty($email)) {
             $_SESSION['error'] = 'please enter email';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['error'] = 'invalid email';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else if (empty($password)) {
             $_SESSION['error'] = 'please enter password';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
             $_SESSION['error'] = 'password need to be 5 - 20 characters';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else if (empty($date_of_birth)) {
             $_SESSION['error'] = 'please enter your birth date';
+            $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
         } else {
             try {
@@ -43,6 +51,7 @@
 
                 if ($row['email'] == $email) {
                     $_SESSION['warning'] = "This email already exists. <a href='signin.php'>Click here</a> to sign in";
+                    $_SESSION['alert_type'] = 'warning';
                     header("location: log-sig.php");
                 } else if (!isset($_SESSION['error'])) {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -55,9 +64,11 @@
                     $stmt->bindParam(":date_of_birth", $date_of_birth); // Corrected binding here
                     $stmt->execute();
                     $_SESSION['success'] = "Signup success. <a href='signin.php' class='alert-link'>Click here</a> to sign in";
+                    $_SESSION['alert_type'] = 'success';
                     header("location: log-sig.php");
                 } else {
                     $_SESSION['error'] = "Something went wrong";
+                    $_SESSION['alert_type'] = 'error';
                     header("location: log-sig.php");
                 }
                 
