@@ -98,6 +98,8 @@
             <p>Game Image<span>*</span></p>
             <input type="file" name="GameImage" required accept="image/*" class="box">
             <input type="submit" value="Add game" name="add_game" class="btn">
+            <button type="button" class="btn" onclick="redirectToUpload()">go back</button>
+
         </form>
     </section>
     <!-- Add -->
@@ -119,6 +121,10 @@
     });
     <?php unset($_SESSION['alert']); ?>
 <?php endif; ?>
+
+    function redirectToUpload() {
+        window.location.href = 'upload.php';
+    }
 
 
 

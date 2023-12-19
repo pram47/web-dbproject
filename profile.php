@@ -2,6 +2,7 @@
 
     session_start();
     require_once 'components/server.php';
+    
     if (isset($_GET['delete'])) {
         $delete_id = $_GET['delete'];
         $deletestmt = $conn->query("DELETE FROM users WHERE id = $delete_id");
