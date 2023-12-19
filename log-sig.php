@@ -1,6 +1,6 @@
 <?php
-session_start();
-require_once 'config/db.php';
+    session_start();
+    require_once 'components/server.php';
 ?>
 
 
@@ -11,23 +11,13 @@ require_once 'config/db.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <link rel="stylesheet" href="testlogin.css">
+    <link rel="stylesheet" href="css/testlogin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
     <header>
     <!-- Nav Section Start -->
-    <nav>
-        <div class="logo">
-            <a href="#">MySite</a>
-        </div>
-        
-        <ul class="menu">
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Sign up</a></li>
-            <li><button class="btnLogin">Login</button></li>
-        </ul>
-    </nav>
+    <?php include 'components/header.php';?>
     <!-- Nav Section -->
     </header>
     <!-- Link Register -->
@@ -83,16 +73,6 @@ require_once 'config/db.php';
                         <label for="">Password</label>
                     </div>
                     <div class="input-box">
-                        <span class="icon"><ion-icon  aria-describedby="firstname"></ion-icon></span>
-                        <input type="text" name="firstname" required>
-                        <label for="">First name</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><ion-icon aria-describedby="lastname"></ion-icon></span>
-                        <input type="text" name="lastname" required>
-                        <label for="">Last name</label>
-                    </div>
-                    <div class="input-box">
                         <span class="icon"><ion-icon aria-describedby="username"></ion-icon></span>
                         <input type="text" name="username" required>
                         <label for="">Username</label>
@@ -102,21 +82,12 @@ require_once 'config/db.php';
                         <input type="date" name="date_of_birth" required>
                         <label for="">Date of birth</label>
                     </div>
-                    <div class="gender">
-                        <span class="icon"><ion-icon name="transgender"></ion-icon></span>
-                        <select placeholder="gender" id="gender">
-                            <option value="gender">gender</option>
-                            <option value="gender">male</option>
-                            <option value="gender">female</option>
-                        </select>
-                    </div>
                     <button type="submit" name="signup" class="btnSignup">Sign up</button>
-                    <!-- <p>already signup? click here to <a href="signin.php" target="_blank">sign in</a></p> -->
                     <p>already signup? click here to <a href="signin.php">sign in</a></p>
 
                 </form>
         </div>
-        
+        \
     </div>
 
     <script>

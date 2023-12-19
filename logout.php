@@ -1,5 +1,5 @@
 <?php
-session_start();
+include('components/server.php');
 unset($_SESSION['user_login']);
-header('location: log-sig.php');
+header('location: main.php');
 ?>

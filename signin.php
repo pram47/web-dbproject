@@ -1,9 +1,7 @@
 <?php
 session_start();
-require_once 'config/db.php';
+require_once 'components/server.php';
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,23 +9,13 @@ require_once 'config/db.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signin</title>
-    <link rel="stylesheet" href="testlogin.css">
+    <link rel="stylesheet" href="css/testlogin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
     <header>
     <!-- Nav Section Start -->
-    <nav>
-        <div class="logo">
-            <a href="#">MySite</a>
-        </div>
-        
-        <ul class="menu">
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Sign up</a></li>
-            <li><button class="btnLogin">Login</button></li>
-        </ul>
-    </nav>
+    <?php include 'components/header.php';?>
     <!-- Nav Section -->
     </header>
     <!-- Link Register -->
@@ -41,7 +29,7 @@ require_once 'config/db.php';
     <div class="form" id="signupForm">
         <h2>Sign in</h2>
         <div class="form-box" >
-                <form action="signin_db.php" method = "post">
+                <form action="signin_db.php" method = "post"> 
                     <?php if(isset($_SESSION['error'])) {?>
                         <div class = "alert alert-danger" role = "alert">
                             <?php

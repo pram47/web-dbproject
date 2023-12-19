@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'config/db.php';
+    require_once 'components/server.php';
 
     if (isset($_POST['signin'])) {
         $email = $_POST['email'];
@@ -29,20 +29,18 @@
                     if ($email == $row['email']) {
                         if (password_verify($password, $row['password'])) {
                             $_SESSION['user_login'] = $row['id'];
-                            
-                            header("Location: user.php?id=" . $row['id']);
-                            // header("location: user.php");
+                            header("Location:mainuser.php");
                         }else {
                             $_SESSION['error'] = 'wrong password';
-                            header("location: signin.php");
+                            header("Location:signin.php");
                         }
                     } else {
                         $_SESSION['error'] = 'wrong email';
-                        header("location: signin.php");
+                        header("Location:signin.php");
                     }
                 } else {
                     $_SESSION['error'] = "There is no information in the system.";
-                    header("location: signin.php");
+                    header("Location:signin.php");
                 }
                 
                 

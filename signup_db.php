@@ -1,25 +1,13 @@
 <?php
     session_start();
-    require_once 'config/db.php';
+    require_once 'components/server.php';
 
     if (isset($_POST['signup'])) {
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
         $username = $_POST['username'];
-        $date_of_birth = $_POST['date_of_birth'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        
 
-        if (empty($firstname)) {
-            $_SESSION['error'] = 'please enter name';
-            $_SESSION['alert_type'] = 'error';
-            header("location: log-sig.php");
-        } else if (empty($lastname)) {
-            $_SESSION['error'] = 'please enter lastname';
-            $_SESSION['alert_type'] = 'error';
-            header("location: log-sig.php");
-        } else if (empty($username)) {
+        if (empty($username)) {
             $_SESSION['error'] = 'please enter username';
             $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
@@ -39,10 +27,6 @@
             $_SESSION['error'] = 'password need to be 5 - 20 characters';
             $_SESSION['alert_type'] = 'error';
             header("location: log-sig.php");
-        } else if (empty($date_of_birth)) {
-            $_SESSION['error'] = 'please enter your birth date';
-            $_SESSION['alert_type'] = 'error';
-            header("location: log-sig.php");
         } else {
             try {
                 $check_email = $conn->prepare("SELECT email FROM users where email = :email");
@@ -56,13 +40,10 @@
                     header("location: log-sig.php");
                 } else if (!isset($_SESSION['error'])) {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, email, password, username, date_of_birth) VALUES (:firstname, :lastname, :email, :password, :username, :date_of_birth)");
-                    $stmt->bindParam(":firstname", $firstname);
-                    $stmt->bindParam(":lastname", $lastname);
+                    $stmt = $conn->prepare("INSERT INTO users (email, password, username) VALUES (:email, :password, :username)");               
                     $stmt->bindParam(":email", $email);
                     $stmt->bindParam(":password", $passwordHash);
-                    $stmt->bindParam(":username", $username);
-                    $stmt->bindParam(":date_of_birth", $date_of_birth); // Corrected binding here
+                    $stmt->bindParam(":username", $username);                    
                     $stmt->execute();
                     $_SESSION['success'] = "Signup success. <a href='signin.php' class='alert-link'>Click here</a> to sign in";
                     $_SESSION['alert_type'] = 'success';

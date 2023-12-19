@@ -1,42 +1,16 @@
 <?php 
 
     session_start();
-
-    require_once "config/db.php";
+    
+    require_once 'components/server.php';
 
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
         $username = $_POST['username'];
-        $img = $_FILES['img'];
 
-        $img2 = $_POST['img2'];
-        $upload = $_FILES['img']['name'];
-
-        if ($upload != '') {
-            $allow = array('jpg', 'jpeg', 'png');
-            $extension = explode('.', $img['name']);
-            $fileActExt = strtolower(end($extension));
-            $fileNew = rand() . "." . $fileActExt;  // rand function create the rand number 
-            $filePath = 'uploads/'.$fileNew;
-
-            if (in_array($fileActExt, $allow)) {
-                if ($img['size'] > 0 && $img['error'] == 0) {
-                   move_uploaded_file($img['tmp_name'], $filePath);
-                }
-            }
-
-        } else {
-            $fileNew = $img2;
-        }
-
-        $sql = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, username = :username, img = :img WHERE id = :id");
+        $sql = $conn->prepare("UPDATE users SET username = :username WHERE id = :id");
         $sql->bindParam(":id", $id);
-        $sql->bindParam(":firstname", $firstname);
-        $sql->bindParam(":lastname", $lastname);
         $sql->bindParam(":username", $username);
-        $sql->bindParam(":img", $fileNew);
         $sql->execute();
 
         if ($sql) {
@@ -77,45 +51,18 @@
                         $data = $stmt->fetch();
                 }
             ?>
+
+
                 <div class="mb-3">
-                    
-                    
-                    
-                    <input type="text" readonly value="<?php echo $data['id']; ?>" required class="form-control" name="id" >
-                    <label for="firstname" class="col-form-label">First Name:</label>
-                    <input type="text" value="<?php echo $data['firstname']; ?>" required class="form-control" name="firstname" >
-                    <input type="hidden" value="<?php echo $data['img']; ?>" required class="form-control" name="img2" >
-                </div>
-                <div class="mb-3">
-                    <label for="lastname" class="col-form-label">Last Name:</label>
-                    <input type="text" value="<?php echo $data['lastname']; ?>" required class="form-control" name="lastname">
-                </div>
-                <div class="mb-3">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Add this line -->
                     <label for="username" class="col-form-label">Username:</label>
                     <input type="text" value="<?php echo $data['username']; ?>" required class="form-control" name="username">
                 </div>
-                <div class="mb-3">
-                    <label for="img" class="col-form-label">Image:</label>
-                    <input type="file" class="form-control" id="imgInput" name="img">
-                    <img width="100%" src="uploads/<?php echo $data['img']; ?>" id="previewImg" alt="">
-                </div>
+
                 <hr>
                 <a href="profile.php" class="btn btn-secondary">Go Back</a>
                 <button type="submit" name="update" class="btn btn-primary">Update</button>
             </form>
     </div>
 
-    <script>
-        let imgInput = document.getElementById('imgInput');
-        let previewImg = document.getElementById('previewImg');
-
-        imgInput.onchange = evt => {
-            const [file] = imgInput.files;
-                if (file) {
-                    previewImg.src = URL.createObjectURL(file)
-            }
-        }
-
-    </script>
-</body>
 </html>

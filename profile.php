@@ -1,7 +1,7 @@
 <?php 
 
     session_start();
-    include_once 'config/db.php';
+    require_once 'components/server.php';
     if (isset($_GET['delete'])) {
         $delete_id = $_GET['delete'];
         $deletestmt = $conn->query("DELETE FROM users WHERE id = $delete_id");
@@ -10,7 +10,7 @@
         if ($deletestmt) {
             echo "<script>alert('Data has been deleted successfully');</script>";
             // $_SESSION['success'] = "Data has been deleted succesfully";
-            header("refresh:1; url=user.php");
+            header("refresh:1; url=log-sig.php");
         }
         
     }
@@ -24,25 +24,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Upload Image System</title>
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="css/profile.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
     <nav>
-        <div class="logo">
-            <a href="#">MySite</a>
-        </div>
-        
-        <ul class="menu">
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Sign up</a></li>
-            <li><button class="btnLogin">Login</button></li>
-        </ul>
+        <?php include 'components/header.php';?>
     </nav>
     </header>
     <!-- <div class="container">
+        
         <div class="row mt-5">
             <div class="col-12">
                 <form action="upload.php" method="POST" enctype="multipart/form-data">
@@ -57,6 +50,7 @@
                 </form>
             </div>
         </div>
+        
         <div class="row">
             <?php  if (!empty($_SESSION['statusMsg'])) { ?>
                 <div class="alert alert-success" role="alert">
@@ -66,7 +60,7 @@
                     ?>
                 </div>
             <?php } ?>
-        </div>
+        </div> -->
 
         <div class="row g-2">
             <?php 
@@ -86,7 +80,7 @@
                 <p>No image found...</p>
             <?php } ?>
         </div>
-    </div> -->
+    </div>
     
 
 
@@ -105,12 +99,10 @@
         <thead>
             <tr>
             <th scope="col">#</th>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
             <th scope="col">Username</th>
             <th scope="col">Email</th>
-            <th scope="col">Date of birth</th>
-            <th scope="col">Profile image</th>
+            <!-- <th scope="col">Date of birth</th>
+            <th scope="col">Profile image</th> -->
             </tr>
         </thead>
         <tbody>
@@ -118,26 +110,20 @@
             <tr>
 
             <th scope="row"><?= $row['id'];?></th>
-            <td><?= $row['firstname'];?></td>
-            <td><?= $row['lastname'];?></td>
             <td><?= $row['username'];?></td>
             <td><?= $row['email'];?></td>
-            <td><?= $row['date_of_birth'];?></td>
-            <td width="250px"><img class="rounded" width="100%" src="uploads/<?php echo $row['img']; ?>" alt=""></td>
+            <!-- <td width="250px"><img class="rounded" width="100%" src="uploads/<?php echo $row['img']; ?>" alt=""></td> -->
 
 
 
-            <!-- <th scope="row"><?= $user['id'];?></th>
-            <td><?= $user['firstname'];?></td>
-            <td><?= $user['lastname'];?></td>
-            <td><?= $user['username'];?></td>
-            <td><?= $user['email'];?></td>
-            <td><?= $user['date_of_birth'];?></td> -->
+            <th scope="row"><?= $row['id'];?></th>
+            <td><?= $row['username'];?></td>
+            <td><?= $row['email'];?></td>
             <td>
-                <!-- <a href="edit.php?id=<?= $user['id']; ?>"></a> -->
+                <a href="edit.php?id=<?= $row['id']; ?>"></a>
                 <a href="edit.php?id=<?= $row['id']; ?>" class="btn btn-primary">Edit</a>
                 <a href="?delete=<?= $row['id']; ?>" class="btn btn-danger" onclick="return confirm('are you sure you want to delete?')">Delete</a>
-                <!-- <a href="profile.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Profile</a> -->
+                <a href="profile.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Profile</a>
             </td>
             </tr>
 
