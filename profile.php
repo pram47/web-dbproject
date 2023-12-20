@@ -10,7 +10,7 @@ if (isset($_GET['delete'])) {
     if ($deletestmt) {
         echo "<script>alert('Data has been deleted successfully');</script>";
         // $_SESSION['success'] = "Data has been deleted succesfully";
-        header("refresh:1; url=main.php");
+        header("refresh:0.1; url=main.php");
     }
 }
 
